@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="FindBugsConfigurable">
+    <option name="make" value="true" />
+    <option name="effort" value="default" />
+    <option name="priority" value="Medium" />
+    <option name="excludeFilter" value="" />
+  </component>
+  <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="web" url="file://$PROJECT_DIR$/crowdfunding-admin-parent/crowdfunding-admin-webui" />
+  </component>
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/crowdfunding-admin-parent/pom.xml" />
+        <option value="$PROJECT_DIR$/crowdfunding-common-reverse/pom.xml" />
+        <option value="$PROJECT_DIR$/crowdfunding-common-util/pom.xml" />
+      </list>
+    </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/crowdfunding-admin-parent/crowdfunding-admin-component/pom.xml" />
+      </set>
+    </option>
+  </component>
+  <component name="ProjectRootManager">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+  <component name="SuppressionsComponent">
+    <option name="suppComments" value="[]" />
+  </component>
+</project>

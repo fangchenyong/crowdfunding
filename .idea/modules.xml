@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/crowdfunding-admin-parent/crowdfunding-admin-component/crowdfunding-admin-component.iml" filepath="$PROJECT_DIR$/crowdfunding-admin-parent/crowdfunding-admin-component/crowdfunding-admin-component.iml" />
+      <module fileurl="file://$PROJECT_DIR$/crowdfunding-admin-parent/crowdfunding-admin-entity/crowdfunding-admin-entity.iml" filepath="$PROJECT_DIR$/crowdfunding-admin-parent/crowdfunding-admin-entity/crowdfunding-admin-entity.iml" />
+      <module fileurl="file://$PROJECT_DIR$/crowdfunding-admin-parent/crowdfunding-admin-parent.iml" filepath="$PROJECT_DIR$/crowdfunding-admin-parent/crowdfunding-admin-parent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/crowdfunding-admin-parent/crowdfunding-admin-webui/crowdfunding-admin-webui.iml" filepath="$PROJECT_DIR$/crowdfunding-admin-parent/crowdfunding-admin-webui/crowdfunding-admin-webui.iml" />
+      <module fileurl="file://$PROJECT_DIR$/crowdfunding-common-reverse/crowdfunding-common-reverse.iml" filepath="$PROJECT_DIR$/crowdfunding-common-reverse/crowdfunding-common-reverse.iml" />
+      <module fileurl="file://$PROJECT_DIR$/crowdfunding-common-util/crowdfunding-common-util.iml" filepath="$PROJECT_DIR$/crowdfunding-common-util/crowdfunding-common-util.iml" />
+    </modules>
+  </component>
+</project>
