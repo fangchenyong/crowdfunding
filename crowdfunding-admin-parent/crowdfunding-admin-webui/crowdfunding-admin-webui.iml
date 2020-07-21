@@ -1,10 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module org.jetbrains.idea.maven.project.MavenProjectsManager.isMavenModule="true" type="JAVA_MODULE" version="4">
+  <component name="CheckStyle-IDEA-Module">
+    <option name="configuration">
+      <map />
+    </option>
+  </component>
   <component name="FacetManager">
     <facet type="jpa" name="JPA">
       <configuration>
         <setting name="validation-enabled" value="true" />
-        <datasource-mapping />
+        <datasource-mapping>
+          <factory-entry name="crowdfunding-admin-webui" />
+        </datasource-mapping>
         <naming-strategy-map />
       </configuration>
     </facet>
@@ -51,9 +58,9 @@
       <sourceFolder url="file://$MODULE_DIR$/src/main/resources" type="java-resource" />
       <excludeFolder url="file://$MODULE_DIR$/target" />
     </content>
-    <orderEntry type="jdk" jdkName="1.8" jdkType="JavaSDK" />
+    <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="Maven: com.fangchy:crowdfunding-admin-component:1.0-SNAPSHOT" level="project" />
+    <orderEntry type="module" module-name="crowdfunding-admin-component" />
     <orderEntry type="module" module-name="crowdfunding-admin-entity" />
     <orderEntry type="module" module-name="crowdfunding-common-util" />
     <orderEntry type="library" name="Maven: org.springframework:spring-orm:4.3.20.RELEASE" level="project" />

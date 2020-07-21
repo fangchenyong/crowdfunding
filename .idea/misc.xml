@@ -15,15 +15,11 @@
         <option value="$PROJECT_DIR$/crowdfunding-admin-parent/pom.xml" />
         <option value="$PROJECT_DIR$/crowdfunding-common-reverse/pom.xml" />
         <option value="$PROJECT_DIR$/crowdfunding-common-util/pom.xml" />
+        <option value="$PROJECT_DIR$/crowdfunding-admin-parent/crowdfunding-admin-component/pom.xml" />
       </list>
     </option>
-    <option name="ignoredFiles">
-      <set>
-        <option value="$PROJECT_DIR$/crowdfunding-admin-parent/crowdfunding-admin-component/pom.xml" />
-      </set>
-    </option>
   </component>
-  <component name="ProjectRootManager">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_14" default="false" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
   </component>
   <component name="SuppressionsComponent">

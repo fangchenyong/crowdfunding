@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration debug="true">
     <!-- 指定日志输出的位置 -->
-    <appender name="STDOUT"
-              class="ch.qos.logback.core.ConsoleAppender">
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
             <!-- 日志输出的格式 -->
             <!-- 按照顺序分别是：时间、日志级别、线程名称、打印日志的类、日志主体
             内容、换行 -->
             <pattern>[%d{HH:mm:ss.SSS}] [%-5level] [%thread] [%logger]
-                [%msg]%n</pattern>
+                %msg%n</pattern>
         </encoder>
     </appender>
     <!-- 设置全局日志级别。日志级别按顺序分别是：DEBUG、INFO、WARN、ERROR -->
@@ -18,5 +17,5 @@
         <appender-ref ref="STDOUT" />
     </root>
     <!-- 根据特殊需求指定局部日志级别 -->
-    <logger name="com.fangchy.crowd.mapper" level="DEBUG"/>
+    <logger name="com.fangchy.mapper" level="DEBUG"/>
 </configuration>

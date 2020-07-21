@@ -2,8 +2,11 @@ package com.fangchy;
 
 import com.fangchy.entity.Admin;
 import com.fangchy.mapper.AdminMapper;
+import com.fangchy.service.api.IAdminService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -20,7 +23,7 @@ import java.sql.SQLException;
  * @Date: 2020/7/21 16:06
  **/
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath:spring-persist-mybatis.xml"})
+@ContextConfiguration(locations = {"classpath:spring-persist-mybatis.xml", "classpath:spring-persist-tx.xml"})
 public class CrowdTest {
 
     @Autowired
@@ -28,6 +31,9 @@ public class CrowdTest {
 
     @Autowired
     private AdminMapper adminMapper;
+
+    @Autowired
+    private IAdminService adminService;
 
     @Test
     public void testConnection() throws SQLException {
@@ -40,5 +46,26 @@ public class CrowdTest {
         Admin admin = new Admin(null, "joey", "123456", "joey", "1@qq.com", "");
         int i = adminMapper.insert(admin);
         System.out.println("插入行数："+i);
+    }
+
+    @Test
+    public void testLog(){
+        Logger logger = LoggerFactory.getLogger(CrowdTest.class);
+        logger.debug("Debug级别日志");
+        logger.debug("Debug级别日志");
+        logger.debug("Debug级别日志");
+        logger.info("Info级别日志");
+        logger.info("Info级别日志");
+        logger.info("Info级别日志");
+        logger.error("Error级别日志");
+        logger.error("Error级别日志");
+        logger.error("Error级别日志");
+
+    }
+
+    @Test
+    public void testTx(){
+        Admin admin = new Admin(null, "joey123456", "123456", "joey123456", "1@qq.com", "");
+        adminService.saveAdmin(admin);
     }
 }
