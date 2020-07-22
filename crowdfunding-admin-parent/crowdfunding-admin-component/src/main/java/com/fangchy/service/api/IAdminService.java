@@ -2,6 +2,8 @@ package com.fangchy.service.api;
 
 import com.fangchy.entity.Admin;
 
+import java.util.List;
+
 /**
  * @ClassName: IAdminService
  * @Description: TODO
@@ -10,4 +12,6 @@ import com.fangchy.entity.Admin;
  **/
 public interface IAdminService {
     void saveAdmin(Admin admin);
+
+    List<Admin> getAll();
 }
