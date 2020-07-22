@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<!-- http://localhost:8080/atcrowdfunding02-admin-webui/test/ssm.html -->
+<!-- http://localhost:8080/crowdfunding-admin-webui/test/ssm.html -->
 <base href="http://${pageContext.request.serverName }:${pageContext.request.serverPort }${pageContext.request.contextPath }/"/>
 <script type="text/javascript" src="jquery/jquery-2.1.1.min.js"></script>
 <script type="text/javascript">
@@ -17,11 +17,11 @@
 			// 准备要发送的数据
 			var student = {
 				"stuId": 5,
-				"stuName":"tom",
+				"stuName":"joey",
 				"address": {
-					"province": "广东",
-					"city": "深圳",
-					"street":"后瑞"
+					"province": "浙江",
+					"city": "杭州",
+					"street":"西湖"
 				},
 				"subjectList": [
 					{
@@ -130,5 +130,15 @@
 </head>
 <body>
 	<a href="test/ssm.html">测试SSM整合环境</a>
+	<br>
+	<button id="btn1">Send [5,8,12] ONE</button>
+	<br>
+	<button id="btn2">Send [5,8,12] TWO</button>
+	<br>
+	<button id="btn3">Send [5,8,12] THREE</button>
+	<br>
+	<button id="btn4">Send Compose Object</button>
+	<br>
+	<button id="btn5">点我弹框</button>
 </body>
 </html>
