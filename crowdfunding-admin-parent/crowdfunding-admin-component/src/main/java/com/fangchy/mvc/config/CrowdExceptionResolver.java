@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.fangchy.constant.CrowdConstant;
+import com.fangchy.exception.LoginFaildException;
 import com.fangchy.util.CrowdUtil;
 import com.fangchy.util.ResultEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -18,7 +19,19 @@ import com.google.gson.Gson;
 // @ControllerAdvice表示当前类是一个基于注解的异常处理器类
 @ControllerAdvice
 public class CrowdExceptionResolver {
-	
+
+	@ExceptionHandler(value = LoginFaildException.class)
+	public ModelAndView resolveLoginFailedException(
+			NullPointerException exception,
+			HttpServletRequest request,
+			HttpServletResponse response) throws IOException {
+
+		String viewName = "admin-login";
+
+		return commonResolve(viewName, exception, request, response);
+	}
+
+
 	@ExceptionHandler(value = ArithmeticException.class)
 	public ModelAndView resolveMathException(
 				ArithmeticException exception,
@@ -27,7 +40,6 @@ public class CrowdExceptionResolver {
 			) throws IOException {
 
 		String viewName = "system-error";
-
 		return commonResolve(viewName, exception, request, response);
 	}
 
