@@ -6,14 +6,19 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <!-- http://localhost:8080/crowdfunding-admin-webui/test/ssm.html -->
-<base href="http://${pageContext.request.serverName }:${pageContext.request.serverPort }${pageContext.request.contextPath }/"/>
+<link rel="stylesheet" href="layer/theme/default/layer.css">
 <script type="text/javascript" src="jquery/jquery-2.1.1.min.js"></script>
+<base href="http://${pageContext.request.serverName }:${pageContext.request.serverPort }${pageContext.request.contextPath }/"/>
+<script type="text/javascript" src="layer/layer.js"></script>
 <script type="text/javascript">
-	
+
 	$(function(){
-		
+		$("#btn5").click(function(){
+			alert("fangchy");
+			layer.alert("layer:fangchy");
+		});
 		$("#btn4").click(function(){
-			
+
 			// 准备要发送的数据
 			var student = {
 				"stuId": 5,
@@ -37,10 +42,10 @@
 					"k2":"v2"
 				}
 			};
-			
+
 			// 将JSON对象转换为JSON字符串
 			var requestBody = JSON.stringify(student);
-			
+
 			// 发送Ajax请求
 			$.ajax({
 				"url":"send/compose/object.json",
@@ -55,20 +60,20 @@
 					console.log(response);
 				}
 			});
-			
+
 		});
-		
+
 		$("#btn3").click(function(){
-			
+
 			// 准备好要发送到服务器端的数组
 			var array = [5, 8, 12];
 			console.log(array.length);
-			
+
 			// 将JSON数组转换为JSON字符串
 			var requestBody = JSON.stringify(array);
 			// "['5','8','12']"
 			console.log(requestBody.length);
-			
+
 			$.ajax({
 				"url": "send/array/three.html",			// 请求目标资源的地址
 				"type": "post",						// 请求方式
@@ -82,11 +87,11 @@
 					alert(response);
 				}
 			});
-			
+
 		});
-		
+
 		$("#btn2").click(function(){
-			
+
 			$.ajax({
 				"url": "send/array/two.html",			// 请求目标资源的地址
 				"type": "post",						// 请求方式
@@ -103,11 +108,11 @@
 					alert(response);
 				}
 			});
-			
+
 		});
-		
+
 		$("#btn1").click(function(){
-			
+
 			$.ajax({
 				"url": "send/array/one.html",			// 请求目标资源的地址
 				"type": "post",						// 请求方式
@@ -122,10 +127,10 @@
 					alert(response);
 				}
 			});
-			
+
 		});
 	});
-	
+
 </script>
 </head>
 <body>

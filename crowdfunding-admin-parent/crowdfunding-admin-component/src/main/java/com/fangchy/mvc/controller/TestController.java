@@ -101,7 +101,7 @@ public class TestController {
     public String testSSM(ModelMap modelMap){
         List<Admin> adminList = adminService.getAll();
         modelMap.addAttribute("adminList",adminList);
-        //System.out.println(10/0);
+        System.out.println(10/0);
         return "target";
     }
 }

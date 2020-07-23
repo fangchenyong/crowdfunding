@@ -5,6 +5,7 @@ import java.io.IOException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.fangchy.constant.CrowdConstant;
 import com.fangchy.util.CrowdUtil;
 import com.fangchy.util.ResultEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -83,7 +84,7 @@ public class CrowdExceptionResolver {
 		ModelAndView modelAndView = new ModelAndView();
 		
 		// 9.将Exception对象存入模型
-		modelAndView.addObject("exception", exception);
+		modelAndView.addObject(CrowdConstant.ATTR_NAME_EXCEPTION, exception);
 		
 		// 10.设置对应的视图名称
 		modelAndView.setViewName(viewName);
