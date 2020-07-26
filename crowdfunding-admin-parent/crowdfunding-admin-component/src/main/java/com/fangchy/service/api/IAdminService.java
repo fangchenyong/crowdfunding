@@ -1,6 +1,7 @@
 package com.fangchy.service.api;
 
 import com.fangchy.entity.Admin;
+import com.github.pagehelper.PageInfo;
 
 import java.util.List;
 
@@ -16,4 +17,8 @@ public interface IAdminService {
     List<Admin> getAll();
 
     Admin getAdminByLoginAcct(String loginAcct, String userPswd);
+
+    PageInfo<Admin> getPageInfo(String keyword,Integer pageNum,Integer pageSize);
+
+    void remove(Integer adminId);
 }

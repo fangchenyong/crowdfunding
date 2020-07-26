@@ -8,6 +8,8 @@ import com.fangchy.mapper.AdminMapper;
 import com.fangchy.service.api.IAdminService;
 
 import com.fangchy.util.CrowdUtil;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -73,5 +75,20 @@ public class AdminServiceImpl implements IAdminService {
         }
         // 8.如果一致则返回Admin对象
         return admin;
+    }
+
+    @Override
+    public PageInfo<Admin> getPageInfo(String keyword, Integer pageNum, Integer pageSize) {
+        // 1.调用PageHelper的静态方法开启分页功能
+        PageHelper.startPage(pageNum, pageSize);
+        // 2.执行查询
+        List<Admin> list = adminMapper.selectAdminByKeyword(keyword);
+        // 3.封装到PageInfo对象中
+        return new PageInfo<>(list);
+    }
+
+    @Override
+    public void remove(Integer adminId) {
+        adminMapper.deleteByPrimaryKey(adminId);
     }
 }
