@@ -3,6 +3,7 @@ package com.fangchy.service.impl;
 import com.fangchy.constant.CrowdConstant;
 import com.fangchy.entity.Admin;
 import com.fangchy.entity.AdminExample;
+import com.fangchy.exception.LoginAcctAlreadyInUseForUpdateException;
 import com.fangchy.exception.LoginFaildException;
 import com.fangchy.mapper.AdminMapper;
 import com.fangchy.service.api.IAdminService;
@@ -11,6 +12,7 @@ import com.fangchy.util.CrowdUtil;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -90,5 +92,23 @@ public class AdminServiceImpl implements IAdminService {
     @Override
     public void remove(Integer adminId) {
         adminMapper.deleteByPrimaryKey(adminId);
+    }
+
+    @Override
+    public Admin getAdminById(Integer adminId) {
+        return adminMapper.selectByPrimaryKey(adminId);
+    }
+
+    @Override
+    public void update(Admin admin){
+        //表示有选择的更新，对于null值的字段不更新
+        try {
+            adminMapper.updateByPrimaryKeySelective(admin);
+        } catch (Exception e) {
+            e.printStackTrace();
+            if (e instanceof DuplicateKeyException) {
+                throw new LoginAcctAlreadyInUseForUpdateException(CrowdConstant.MESSAGE_LOGIN_ACCT_ALREADY_IN_USE);
+            }
+        }
     }
 }

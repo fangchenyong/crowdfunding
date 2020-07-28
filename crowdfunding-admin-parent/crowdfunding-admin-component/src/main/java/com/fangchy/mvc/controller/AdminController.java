@@ -2,9 +2,12 @@ package com.fangchy.mvc.controller;
 
 import com.fangchy.constant.CrowdConstant;
 import com.fangchy.entity.Admin;
+import com.fangchy.exception.LoginAcctAlreadyInUseException;
 import com.fangchy.service.api.IAdminService;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -64,6 +67,39 @@ public class AdminController {
         // 执行删除
         adminService.remove(adminId);
         // 页面跳转
+        //return "redirect:/admin/get/page.html?pageNum=" + pageNum + "&keyword=" + keyword;
+        return "redirect:/admin/get/page.html?pageNum=" + pageNum;
+    }
+
+    //@PreAuthorize("hasAuthority('user:save')")
+    @RequestMapping("/admin/save.html")
+    public String save(Admin admin) {
+        try {
+            adminService.saveAdmin(admin);
+        } catch (Exception e) {
+            e.printStackTrace();
+            if (e instanceof DuplicateKeyException) {
+                throw new LoginAcctAlreadyInUseException(CrowdConstant.MESSAGE_LOGIN_ACCT_ALREADY_IN_USE);
+            }
+        }
+        return "redirect:/admin/get/page.html";
+    }
+
+    @RequestMapping("admin/to/edit/page.html")
+    public String toEditPage(@RequestParam("adminId") Integer adminId,
+                             ModelMap modelMap) {
+        // 1.根据adminId查询Admin对象
+        Admin admin = adminService.getAdminById(adminId);
+        // 2.将Admin对象存入模型
+        modelMap.addAttribute("admin", admin);
+        return "admin-edit";
+    }
+
+    @RequestMapping("admin/update.html")
+    public String update(Admin admin,
+                         @RequestParam("pageNum") Integer pageNum,
+                         @RequestParam("keyword") String keyword){
+        adminService.update(admin);
         return "redirect:/admin/get/page.html?pageNum=" + pageNum + "&keyword=" + keyword;
     }
 }
