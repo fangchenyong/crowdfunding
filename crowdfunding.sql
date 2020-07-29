@@ -43,4 +43,22 @@ INSERT INTO `t_admin` VALUES (249, 'admin02', '2222', 'admin02', 'bbb', NULL);
 INSERT INTO `t_admin` VALUES (250, 'admin03', '3333', 'admin03', 'www', NULL);
 INSERT INTO `t_admin` VALUES (251, 'joey', '123456', 'joey', '1@qq.com', '');
 
+-- ----------------------------
+-- Table structure for t_role
+-- ----------------------------
+DROP TABLE IF EXISTS `t_role`;
+CREATE TABLE `t_role`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` char(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 240 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of t_role
+-- ----------------------------
+INSERT INTO `t_role` VALUES (1, '经理');
+INSERT INTO `t_role` VALUES (237, '部长');
+INSERT INTO `t_role` VALUES (238, '经理操作者');
+INSERT INTO `t_role` VALUES (239, '部长操作者');
+
 SET FOREIGN_KEY_CHECKS = 1;
