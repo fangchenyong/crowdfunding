@@ -34,7 +34,7 @@ public class RoleServiceImpl implements IRoleService {
 
     @Override
     public void saveRole(Role role) {
-
+        roleMapper.insert(role);
     }
 
     @Override
