@@ -40,15 +40,6 @@ public class RoleController {
     }
 
     @ResponseBody
-    @RequestMapping("/role/remove/by/role/id/array.json")
-    public ResultEntity<String> removeByRoleIdArray(@RequestBody List<Integer> roleIdList){
-        System.out.println("-------------");
-        System.out.println(roleIdList.toString());
-        roleService.removeRole(roleIdList);
-        return ResultEntity.successWithoutData();
-    }
-
-    @ResponseBody
     @RequestMapping("/role/update.json")
     public ResultEntity<String> updateRole(Role role) {
         System.out.println(role.toString());
@@ -60,6 +51,15 @@ public class RoleController {
     @RequestMapping("/role/save.json")
     public ResultEntity<String> savaRole(Role role){
         roleService.saveRole(role);
+        return ResultEntity.successWithoutData();
+    }
+
+    @ResponseBody
+    @RequestMapping("/role/remove/by/role/id/array.json")
+    public ResultEntity<String> removeByRoleIdArray(@RequestBody List<Integer> roleIdList){
+        System.out.println("-------------");
+        System.out.println(roleIdList.toString());
+        roleService.removeRole(roleIdList);
         return ResultEntity.successWithoutData();
     }
 }

@@ -1,6 +1,7 @@
 package com.fangchy.service.impl;
 
 import com.fangchy.entity.Role;
+import com.fangchy.entity.RoleExample;
 import com.fangchy.mapper.RoleMapper;
 import com.fangchy.service.api.IRoleService;
 import com.github.pagehelper.PageHelper;
@@ -44,7 +45,11 @@ public class RoleServiceImpl implements IRoleService {
 
     @Override
     public void removeRole(List<Integer> roleIdList) {
+        RoleExample roleExample = new RoleExample();
+        RoleExample.Criteria criteria = roleExample.createCriteria();
+        criteria.andIdIn(roleIdList);
 
+        roleMapper.deleteByExample(roleExample);
     }
 
     @Override
