@@ -39,7 +39,7 @@ public class RoleServiceImpl implements IRoleService {
 
     @Override
     public void updateRole(Role role) {
-
+        roleMapper.updateByPrimaryKey(role);
     }
 
     @Override
