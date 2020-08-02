@@ -25,4 +25,8 @@ public interface IAdminService {
     Admin getAdminById(Integer adminId);
 
     void update(Admin admin);
+
+    void saveAdminRoleRelationship(Integer adminId, List<Integer> roleIdList);
+
+    Admin getAdminByLoginAcct2(String username);
 }

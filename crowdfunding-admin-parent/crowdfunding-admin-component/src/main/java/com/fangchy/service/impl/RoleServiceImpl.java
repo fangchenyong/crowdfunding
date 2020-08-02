@@ -54,11 +54,11 @@ public class RoleServiceImpl implements IRoleService {
 
     @Override
     public List<Role> getAssignedRole(Integer adminId) {
-        return null;
+        return roleMapper.selectAssignedRole(adminId);
     }
 
     @Override
     public List<Role> getUnAssignedRole(Integer adminId) {
-        return null;
+        return roleMapper.selectUnAssignedRole(adminId);
     }
 }

@@ -97,4 +97,68 @@ INSERT INTO `t_menu` VALUES (17, 11, ' 项 目 分 类 ', 'projectType/index.htm
 INSERT INTO `t_menu` VALUES (18, 11, ' 项 目 标 签 ', 'tag/index.htm', 'glyphicon\r\nglyphicon-tags');
 INSERT INTO `t_menu` VALUES (19, 1, ' 参 数 管 理 ', 'param/index.htm', 'glyphicon\r\nglyphicon-list-alt');
 
+-- ----------------------------
+-- Table structure for inner_admin_role
+-- ----------------------------
+DROP TABLE IF EXISTS `inner_admin_role`;
+CREATE TABLE `inner_admin_role`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `admin_id` int(11) NULL DEFAULT NULL,
+  `role_id` int(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of inner_admin_role
+-- ----------------------------
+INSERT INTO `inner_admin_role` VALUES (5, 2, 1);
+INSERT INTO `inner_admin_role` VALUES (6, 2, 238);
+INSERT INTO `inner_admin_role` VALUES (7, 3, 237);
+INSERT INTO `inner_admin_role` VALUES (8, 3, 239);
+
+-- ----------------------------
+-- Table structure for inner_role_auth
+-- ----------------------------
+DROP TABLE IF EXISTS `inner_role_auth`;
+CREATE TABLE `inner_role_auth`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `role_id` int(11) NULL DEFAULT NULL,
+  `auth_id` int(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 14 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of inner_role_auth
+-- ----------------------------
+INSERT INTO `inner_role_auth` VALUES (1, 1, 2);
+INSERT INTO `inner_role_auth` VALUES (8, 238, 1);
+INSERT INTO `inner_role_auth` VALUES (9, 238, 8);
+INSERT INTO `inner_role_auth` VALUES (12, 239, 4);
+INSERT INTO `inner_role_auth` VALUES (13, 239, 5);
+
+-- ----------------------------
+-- Table structure for t_auth
+-- ----------------------------
+DROP TABLE IF EXISTS `t_auth`;
+CREATE TABLE `t_auth`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `title` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `category_id` int(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of t_auth
+-- ----------------------------
+INSERT INTO `t_auth` VALUES (1, '', '用户模块', NULL);
+INSERT INTO `t_auth` VALUES (2, 'user:delete', '删除', 1);
+INSERT INTO `t_auth` VALUES (3, 'user:get', '查询', 1);
+INSERT INTO `t_auth` VALUES (4, '', '角色模块', NULL);
+INSERT INTO `t_auth` VALUES (5, 'role:delete', '删除', 4);
+INSERT INTO `t_auth` VALUES (6, 'role:get', '查询', 4);
+INSERT INTO `t_auth` VALUES (7, 'role:add', '新增', 4);
+INSERT INTO `t_auth` VALUES (8, 'user:save', '保存', 1);
+
+
 SET FOREIGN_KEY_CHECKS = 1;
