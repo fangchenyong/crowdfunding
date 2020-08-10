@@ -41,18 +41,18 @@
     <mvc:view-controller path="/admin/to/add/page.html" view-name="admin-add"/>
     <mvc:view-controller path="/role/to/page.html" view-name="role-page"/>
     <mvc:view-controller path="/menu/to/page.html" view-name="menu-page"/>
-    <!--注册拦截器 -->
-    <mvc:interceptors>
+    <!--注册拦截器：使用SpringSecurity后当前自定义的拦截器取消 -->
+  <!--  <mvc:interceptors>
         <mvc:interceptor>
-            <!--mvc:mapping配置要拦截的资源-->
-            <!--对应一层路径 /**对应多层路径-->
+            &lt;!&ndash;mvc:mapping配置要拦截的资源&ndash;&gt;
+            &lt;!&ndash;对应一层路径 /**对应多层路径&ndash;&gt;
             <mvc:mapping path="/**"/>
             <mvc:exclude-mapping path="/admin/to/login/page.html"/>
             <mvc:exclude-mapping path="/admin/do/login.html"/>
             <mvc:exclude-mapping path="/admin/do/logout.html"/>
-            <!-- 配置拦截器类-->
+            &lt;!&ndash; 配置拦截器类&ndash;&gt;
             <bean class="com.fangchy.mvc.interceptor.LoginInterceptor"></bean>
         </mvc:interceptor>
-    </mvc:interceptors>
+    </mvc:interceptors>-->
 
 </beans>

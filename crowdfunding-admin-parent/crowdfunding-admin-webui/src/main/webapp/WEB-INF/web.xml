@@ -34,7 +34,7 @@
 			<param-value>true</param-value>
 		</init-param>
 	</filter>
-	
+
 	<!-- 这个Filter执行的顺序要在所有其他Filter前面 -->
 	<!-- 原因如下： -->
 	<!-- request.setCharacterEncoding(encoding)必须在request.getParameter()前面 -->
@@ -43,7 +43,7 @@
 		<filter-name>CharacterEncodingFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
-	
+
 	<!-- The front controller of this Spring Web application, responsible for handling all application requests -->
 	<servlet>
 		<servlet-name>springDispatcherServlet</servlet-name>
@@ -77,5 +77,14 @@
 		<!-- 为了让Ajax请求能够顺利拿到JSON格式的响应数据，我们另外配置json扩展名 -->
 		<url-pattern>*.json</url-pattern>
 	</servlet-mapping>
-	
+
+	<!-- SpringSecurity 的 Filter -->
+	<filter>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
 </web-app>
