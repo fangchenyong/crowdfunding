@@ -27,11 +27,16 @@ public class WebAppSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private UserDetailsService userDetailsService;
 
+    @Bean
+    public BCryptPasswordEncoder getPasswordEncoder(){
+        return new BCryptPasswordEncoder();
+    }
+
     @Override
     protected void configure(AuthenticationManagerBuilder builder) throws Exception {
         //builder.inMemoryAuthentication().withUser("joey").password("123456").roles("ADMIN");
-        builder.userDetailsService(userDetailsService);
-        //builder.userDetailsService(userDetailsService).passwordEncoder(getPasswordEncoder());
+        //builder.userDetailsService(userDetailsService);
+        builder.userDetailsService(userDetailsService).passwordEncoder(getPasswordEncoder());
     }
 
     @Override
