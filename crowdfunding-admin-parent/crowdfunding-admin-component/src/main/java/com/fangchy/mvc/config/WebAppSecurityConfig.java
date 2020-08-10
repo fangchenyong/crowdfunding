@@ -24,9 +24,13 @@ import java.io.IOException;
 @EnableGlobalMethodSecurity(prePostEnabled=true)
 public class WebAppSecurityConfig extends WebSecurityConfigurerAdapter {
 
+    @Autowired
+    private UserDetailsService userDetailsService;
+
     @Override
     protected void configure(AuthenticationManagerBuilder builder) throws Exception {
-        builder.inMemoryAuthentication().withUser("joey").password("123456").roles("ADMIN");
+        //builder.inMemoryAuthentication().withUser("joey").password("123456").roles("ADMIN");
+        builder.userDetailsService(userDetailsService);
         //builder.userDetailsService(userDetailsService).passwordEncoder(getPasswordEncoder());
     }
 
