@@ -13,9 +13,12 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -31,11 +34,23 @@ public class AdminServiceImpl implements IAdminService {
     @Autowired
     private AdminMapper adminMapper;
 
+//    @Autowired
+//    private BCryptPasswordEncoder passwordEncoder;
 
     @Override
     public void saveAdmin(Admin admin) {
+        // 1.密码加密
+        String userPswd = admin.getUserPswd();
+        //String md5 = CrowdUtil.md5(userPswd);
+        userPswd = new BCryptPasswordEncoder().encode(userPswd);
+        admin.setUserPswd(userPswd);
+        // 2.生成创建时间
+        Date date = new Date();
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String creatTime = format.format(date);
+        admin.setCreateTime(creatTime);
+        // 3.执行保存
         adminMapper.insert(admin);
-        //throw new RuntimeException();
     }
 
     @Override
