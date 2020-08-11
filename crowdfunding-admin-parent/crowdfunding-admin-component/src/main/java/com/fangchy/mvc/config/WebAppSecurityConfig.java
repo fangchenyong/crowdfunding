@@ -61,8 +61,19 @@ public class WebAppSecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .antMatchers("/ztree/**")
                 .permitAll()
+                .antMatchers("/admin/get/page.html")
+                .hasRole("经理")
                 .anyRequest()
                 .authenticated()
+                .and()
+                .exceptionHandling()
+                .accessDeniedHandler(new AccessDeniedHandler() {
+                    @Override
+                    public void handle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, AccessDeniedException e) throws IOException, ServletException {
+                        httpServletRequest.setAttribute("exception", new Exception(CrowdConstant.MESSAGE_LOGIN_DENIED));
+                        httpServletRequest.getRequestDispatcher("/WEB-INF/system-error.jsp").forward(httpServletRequest, httpServletResponse);
+                    }
+                })
                 .and()
                 .csrf()
                 .disable()
