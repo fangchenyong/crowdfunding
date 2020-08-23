@@ -18,6 +18,7 @@
         <module>crowdfunding-member-project-consumer</module>
         <module>crowdfunding-member-order-consumer</module>
         <module>crowdfunding-member-pay-consumer</module>
+        <module>crowdfunding-member-api</module>
     </modules>
 
     <dependencyManagement>
