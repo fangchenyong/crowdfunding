@@ -1,9 +1,9 @@
 package com.fangchy.mvc.controller;
 
+import com.fangchy.service.api.IAdminService;
 import com.fangchy.entity.Admin;
 import com.fangchy.entity.ParamData;
 import com.fangchy.entity.Student;
-import com.fangchy.service.api.IAdminService;
 import com.fangchy.util.CrowdUtil;
 import com.fangchy.util.ResultEntity;
 import org.slf4j.Logger;

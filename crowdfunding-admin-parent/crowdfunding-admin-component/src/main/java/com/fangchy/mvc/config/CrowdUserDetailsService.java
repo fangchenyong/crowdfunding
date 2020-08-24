@@ -1,10 +1,10 @@
 package com.fangchy.mvc.config;
 
-import com.fangchy.entity.Admin;
 import com.fangchy.entity.Role;
 import com.fangchy.service.api.IAdminService;
-import com.fangchy.service.api.IAuthService;
 import com.fangchy.service.api.IRoleService;
+import com.fangchy.entity.Admin;
+import com.fangchy.service.api.IAuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

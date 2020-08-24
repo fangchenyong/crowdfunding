@@ -1,9 +1,9 @@
 package com.fangchy.service.impl;
 
+import com.fangchy.service.api.IAuthService;
 import com.fangchy.entity.Auth;
 import com.fangchy.entity.AuthExample;
 import com.fangchy.mapper.AuthMapper;
-import com.fangchy.service.api.IAuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

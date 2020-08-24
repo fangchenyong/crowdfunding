@@ -1,13 +1,12 @@
 package com.fangchy.mvc.controller;
 
+import com.fangchy.service.api.IAdminService;
 import com.fangchy.constant.CrowdConstant;
 import com.fangchy.entity.Admin;
 import com.fangchy.exception.LoginAcctAlreadyInUseException;
-import com.fangchy.service.api.IAdminService;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;

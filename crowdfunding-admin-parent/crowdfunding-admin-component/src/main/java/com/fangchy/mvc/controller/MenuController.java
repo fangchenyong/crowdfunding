@@ -4,7 +4,6 @@ import com.fangchy.entity.Menu;
 import com.fangchy.service.api.IMenuService;
 import com.fangchy.util.ResultEntity;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;

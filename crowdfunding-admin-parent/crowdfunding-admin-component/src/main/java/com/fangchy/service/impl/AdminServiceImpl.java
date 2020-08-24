@@ -1,12 +1,12 @@
 package com.fangchy.service.impl;
 
+import com.fangchy.service.api.IAdminService;
 import com.fangchy.constant.CrowdConstant;
 import com.fangchy.entity.Admin;
 import com.fangchy.entity.AdminExample;
 import com.fangchy.exception.LoginAcctAlreadyInUseForUpdateException;
 import com.fangchy.exception.LoginFaildException;
 import com.fangchy.mapper.AdminMapper;
-import com.fangchy.service.api.IAdminService;
 
 import com.fangchy.util.CrowdUtil;
 import com.github.pagehelper.PageHelper;
@@ -15,7 +15,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

@@ -51,7 +51,7 @@
             <mvc:exclude-mapping path="/admin/do/login.html"/>
             <mvc:exclude-mapping path="/admin/do/logout.html"/>
             &lt;!&ndash; 配置拦截器类&ndash;&gt;
-            <bean class="com.fangchy.mvc.interceptor.LoginInterceptor"></bean>
+            <bean class="LoginInterceptor"></bean>
         </mvc:interceptor>
     </mvc:interceptors>-->
 
