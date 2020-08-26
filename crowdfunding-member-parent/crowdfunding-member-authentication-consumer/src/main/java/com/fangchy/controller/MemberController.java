@@ -4,6 +4,7 @@ import com.fangchy.api.MySQLRemoteService;
 import com.fangchy.api.RedisRemoteService;
 import com.fangchy.constant.CrowdConstant;
 import com.fangchy.entity.po.MemberPO;
+import com.fangchy.entity.vo.MemberLoginVO;
 import com.fangchy.entity.vo.MemberVO;
 import com.fangchy.util.ResultEntity;
 import org.slf4j.Logger;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpSession;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
@@ -140,5 +142,60 @@ public class MemberController {
 
         // 使用重定向避免刷新浏览器导致重新执行注册流程
         return "redirect:/auth/member/to/login/page";
+    }
+
+    @RequestMapping("/auth/member/do/login")
+    public String login(
+            @RequestParam("loginacct") String loginacct,
+            @RequestParam("userpswd") String userpswd,
+            ModelMap modelMap,
+            HttpSession session) {
+
+        // 1.调用远程接口根据登录账号查询MemberPO对象
+        ResultEntity<MemberPO> resultEntity =
+                mySQLRemoteService.getMemberPOByLoginAcctRemote(loginacct);
+
+        if(ResultEntity.FAILED.equals(resultEntity.getResult())) {
+
+            modelMap.addAttribute(CrowdConstant.ATTR_NAME_MESSAGE, resultEntity.getMessage());
+
+            return "member-login";
+
+        }
+
+        MemberPO memberPO = resultEntity.getData();
+
+        if(memberPO == null) {
+            modelMap.addAttribute(CrowdConstant.ATTR_NAME_MESSAGE, CrowdConstant.MESSAGE_LOGIN_FAILED);
+
+            return "member-login";
+        }
+
+        // 2.比较密码
+        String userpswdDataBase = memberPO.getUserpswd();
+
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
+        boolean matcheResult = passwordEncoder.matches(userpswd, userpswdDataBase);
+
+        if(!matcheResult) {
+            modelMap.addAttribute(CrowdConstant.ATTR_NAME_MESSAGE, CrowdConstant.MESSAGE_LOGIN_FAILED);
+
+            return "member-login";
+        }
+
+        // 3.创建MemberLoginVO对象存入Session域
+        MemberLoginVO memberLoginVO = new MemberLoginVO(memberPO.getId(), memberPO.getUsername(), memberPO.getEmail());
+        session.setAttribute(CrowdConstant.ATTR_NAME_LOGIN_MEMBER, memberLoginVO);
+
+        return "redirect:/auth/member/to/center/page";
+    }
+
+    @RequestMapping("/auth/member/logout")
+    public String logout(HttpSession session) {
+
+        session.invalidate();
+
+        return "redirect:/";
     }
 }
