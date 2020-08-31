@@ -34,14 +34,15 @@
 				<i class="glyphicon glyphicon-log-in"></i> 用户登录
 			</h2>
 			<p th:text="${message}">这里显示登录失败的提示消息</p>
+			<p th:text="${session.message}">这里登录检查后发现不允许访问时的提示消息</p>
 			<div class="form-group has-success has-feedback">
 				<input type="text" name="loginacct" class="form-control" id="inputSuccess4"
-					placeholder="请输入登录账号" autofocus> <span
+					   placeholder="请输入登录账号" autofocus> <span
 					class="glyphicon glyphicon-user form-control-feedback"></span>
 			</div>
 			<div class="form-group has-success has-feedback">
 				<input type="text" name="userpswd" class="form-control" id="inputSuccess4"
-					placeholder="请输入登录密码" style="margin-top: 10px;"> <span
+					   placeholder="请输入登录密码" style="margin-top: 10px;"> <span
 					class="glyphicon glyphicon-lock form-control-feedback"></span>
 			</div>
 			<div class="checkbox" style="text-align: right;">
