@@ -178,7 +178,7 @@ public class MemberController {
 
         boolean matcheResult = passwordEncoder.matches(userpswd, userpswdDataBase);
 
-        if(!matcheResult) {
+        if (!matcheResult) {
             modelMap.addAttribute(CrowdConstant.ATTR_NAME_MESSAGE, CrowdConstant.MESSAGE_LOGIN_FAILED);
 
             return "member-login";
@@ -188,7 +188,13 @@ public class MemberController {
         MemberLoginVO memberLoginVO = new MemberLoginVO(memberPO.getId(), memberPO.getUsername(), memberPO.getEmail());
         session.setAttribute(CrowdConstant.ATTR_NAME_LOGIN_MEMBER, memberLoginVO);
 
-        return "redirect:/auth/member/to/center/page";
+        // 问题：
+        // http://localhost:4000
+        // http://loclahost:80
+        // 是两个不同网站，浏览器工作时不会使用相同的 Cookie。
+        // 解决：
+        // 以后重定向的地址都按照通过 Zuul 访问的方式写地址。
+        return "redirect:http://localhost:800/auth/member/to/center/page";
     }
 
     @RequestMapping("/auth/member/logout")

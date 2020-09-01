@@ -1,0 +1,24 @@
+server:
+  port: 5000
+spring:
+  application:
+    name: fangchy-project
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+  redis:
+    host: 127.0.0.1
+  session:
+    store-type: redis
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:1000/eureka
+aliyun:
+  oss:
+    access-key-id: LTAI4GA9uiDrNLcswgFMQtmF
+    access-key-secret: fHkqgUFKyFh9QqvygEymz6OQlhRB8W
+    bucket-domain: fangchenyong.oss-cn-hangzhou.aliyuncs.com
+    bucket-name: fangchenyong
+    end-point: http://oss-cn-hangzhou.aliyuncs.com
