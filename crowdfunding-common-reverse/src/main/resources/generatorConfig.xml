@@ -36,12 +36,18 @@
         <!-- targetPackage：Mapper 接口生成的位置 -->
         <javaClientGenerator type="XMLMAPPER" targetProject=".\src\main\java" targetPackage="com.fangchy.mapper">
             <!-- enableSubPackages:是否让 schema 作为包的后缀 -->
-            <property name="enableSubPackages" value="false" />
+            <property name="enableSubPackages" value="false"/>
         </javaClientGenerator>
         <!-- 数据库表名字和我们的 entity 类对应的映射指定 -->
         <!-- <table tableName="t_admin" domainObjectName="Admin" />-->
         <!-- <table tableName="t_role" domainObjectName="Role" />-->
         <!-- <table tableName="t_menu" domainObjectName="Menu" />-->
-        <table tableName="t_auth" domainObjectName="Auth" />
+        <table tableName="t_type" domainObjectName="TypePO"/>
+        <table tableName="t_tag" domainObjectName="TagPO"/>
+        <table tableName="t_project" domainObjectName="ProjectPO"/>
+        <table tableName="t_project_item_pic" domainObjectName="ProjectItemPicPO"/>
+        <table tableName="t_member_launch_info" domainObjectName="MemberLaunchInfoPO"/>
+        <table tableName="t_return" domainObjectName="ReturnPO"/>
+        <table tableName="t_member_confirm_info" domainObjectName="MemberConfirmInfoPO"/>
     </context>
 </generatorConfiguration>

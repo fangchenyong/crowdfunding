@@ -18,8 +18,9 @@ zuul:
     crowd-portal:
       service-id: fangchy-auth
       path: /** # 这里一定要使用两个“*”号，不然“/”路径后面的多层路径将无法访问
-  host:
-    connect-timeout-millis: 15000
-    socket-timeout-millis: 60000
+    crowd-project:
+      service-id: fangchy-project
+      path: /project/**
 ribbon:
-  ReadTimeout: 60000
+  ReadTimeout: 10000
+  ConnectTimeout: 10000

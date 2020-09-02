@@ -179,4 +179,184 @@ CREATE TABLE `t_member`  (
   UNIQUE INDEX `loginacct`(`loginacct`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Table structure for t_type
+-- ----------------------------
+DROP TABLE IF EXISTS `t_type`;
+CREATE TABLE `t_type`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '分类名称',
+  `remark` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '分类介绍',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of t_type
+-- ----------------------------
+INSERT INTO `t_type` VALUES (1, '科技', '开启智慧生活');
+INSERT INTO `t_type` VALUES (2, '设计', '创建改变未来');
+INSERT INTO `t_type` VALUES (3, '农业', '网络天下肥美');
+INSERT INTO `t_type` VALUES (4, '公益', '汇集点点爱心');
+
+-- ----------------------------
+-- Table structure for t_project_type
+-- ----------------------------
+DROP TABLE IF EXISTS `t_project_type`;
+CREATE TABLE `t_project_type`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `projectid` int(11) NULL DEFAULT NULL,
+  `typeid` int(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of t_project_type
+-- ----------------------------
+INSERT INTO `t_project_type` VALUES (7, 3, 2);
+INSERT INTO `t_project_type` VALUES (8, 4, 4);
+
+-- ----------------------------
+-- Table structure for t_tag
+-- ----------------------------
+DROP TABLE IF EXISTS `t_tag`;
+CREATE TABLE `t_tag`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `pid` int(11) NULL DEFAULT NULL,
+  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for t_project_tag
+-- ----------------------------
+DROP TABLE IF EXISTS `t_project_tag`;
+CREATE TABLE `t_project_tag`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `projectid` int(11) NULL DEFAULT NULL,
+  `tagid` int(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 14 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of t_project_tag
+-- ----------------------------
+INSERT INTO `t_project_tag` VALUES (7, NULL, 5);
+INSERT INTO `t_project_tag` VALUES (8, NULL, 7);
+INSERT INTO `t_project_tag` VALUES (9, NULL, 9);
+INSERT INTO `t_project_tag` VALUES (10, 1, 1);
+INSERT INTO `t_project_tag` VALUES (11, 4, 5);
+INSERT INTO `t_project_tag` VALUES (12, 4, 7);
+INSERT INTO `t_project_tag` VALUES (13, 4, 9);
+
+-- ----------------------------
+-- Table structure for t_project
+-- ----------------------------
+DROP TABLE IF EXISTS `t_project`;
+CREATE TABLE `t_project`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `project_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '项目名称',
+  `project_description` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '项目描述',
+  `money` bigint(11) NULL DEFAULT NULL COMMENT '筹集金额',
+  `day` int(11) NULL DEFAULT NULL COMMENT '筹集天数',
+  `status` int(4) NULL DEFAULT NULL COMMENT '0-即将开始，1-众筹中，2-众筹成功，3-众筹失败',
+  `deploydate` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '项目发起时间',
+  `supportmoney` bigint(11) NULL DEFAULT NULL COMMENT '已筹集到的金额',
+  `supporter` int(11) NULL DEFAULT NULL COMMENT '支持人数',
+  `completion` int(3) NULL DEFAULT NULL COMMENT '百分比完成度',
+  `memberid` int(11) NULL DEFAULT NULL COMMENT '发起人的会员 id',
+  `createdate` varchar(19) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '项目创建时间',
+  `follower` int(11) NULL DEFAULT NULL COMMENT '关注人数',
+  `header_picture_path` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '头图路径',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of t_project
+-- ----------------------------
+INSERT INTO `t_project` VALUES (3, 'brotherMao', '就是帅！', 100000, 30, 0, '2020-6-1', 1000, 20, 25, 4, '2020-06-03', NULL, 'http://ccctop-first.oss-cn-chengdu.aliyuncs.com/20200603/935077885bd44007a38bb3b50282355f.png');
+INSERT INTO `t_project` VALUES (4, 'brotherMao', '就是帅！', 100000, 30, 0, '2020-6-1', 1000, 20, 25, 4, '2020-06-04', NULL, 'http://ccctop-first.oss-cn-chengdu.aliyuncs.com/20200604/5d9813ee713e46c892c3d3b1eff46dd3.png');
+
+-- ----------------------------
+-- Table structure for t_project_item_pic
+-- ----------------------------
+DROP TABLE IF EXISTS `t_project_item_pic`;
+CREATE TABLE `t_project_item_pic`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `projectid` int(11) NULL DEFAULT NULL,
+  `item_pic_path` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of t_project_item_pic
+-- ----------------------------
+INSERT INTO `t_project_item_pic` VALUES (1, NULL, 'http://ccctop-first.oss-cn-chengdu.aliyuncs.com/20200603/085a3c34e0414c71948738adee371040.png');
+INSERT INTO `t_project_item_pic` VALUES (2, 4, 'http://ccctop-first.oss-cn-chengdu.aliyuncs.com/20200604/31bbbe24ed1041ca934a7f11a98c7914.png');
+
+-- ----------------------------
+-- Table structure for t_member_launch_info
+-- ----------------------------
+DROP TABLE IF EXISTS `t_member_launch_info`;
+CREATE TABLE `t_member_launch_info`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `memberid` int(11) NULL DEFAULT NULL COMMENT '会员 id',
+  `description_simple` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '简单介绍',
+  `description_detail` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '详细介绍',
+  `phone_num` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '联系电话',
+  `service_num` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '客服电话',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of t_member_launch_info
+-- ----------------------------
+INSERT INTO `t_member_launch_info` VALUES (1, 4, 'i am mao', '我是猫哥', '123456', '654321');
+INSERT INTO `t_member_launch_info` VALUES (2, 4, 'i am mao', '我是猫哥', '123456', '654321');
+
+-- ----------------------------
+-- Table structure for t_return
+-- ----------------------------
+DROP TABLE IF EXISTS `t_return`;
+CREATE TABLE `t_return`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `projectid` int(11) NULL DEFAULT NULL,
+  `type` int(4) NULL DEFAULT NULL COMMENT '0 - 实物回报， 1 虚拟物品回报',
+  `supportmoney` int(11) NULL DEFAULT NULL COMMENT '支持金额',
+  `content` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '回报内容',
+  `count` int(11) NULL DEFAULT NULL COMMENT '回报产品限额，“0”为不限回报数量',
+  `signalpurchase` int(11) NULL DEFAULT NULL COMMENT '是否设置单笔限购',
+  `purchase` int(11) NULL DEFAULT NULL COMMENT '具体限购数量',
+  `freight` int(11) NULL DEFAULT NULL COMMENT '运费，“0”为包邮',
+  `invoice` int(4) NULL DEFAULT NULL COMMENT '0 - 不开发票， 1 - 开发票',
+  `returndate` int(11) NULL DEFAULT NULL COMMENT '项目结束后多少天向支持者发送回报',
+  `describ_pic_path` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '说明图片路径',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of t_return
+-- ----------------------------
+INSERT INTO `t_return` VALUES (1, NULL, NULL, 10, '以身相许', 5, NULL, 8, 0, NULL, 15, 'http://ccctop-first.oss-cn-chengdu.aliyuncs.com/20200603/f83b07fb27e6465da2f6ad67ac96f12f.png');
+INSERT INTO `t_return` VALUES (2, 4, NULL, 10, '以身相许', 5, NULL, 8, 0, NULL, 15, 'http://ccctop-first.oss-cn-chengdu.aliyuncs.com/20200604/b6901356705844ab85b7ecfe6621ab9f.png');
+
+
+-- ----------------------------
+-- Table structure for t_member_confirm_info
+-- ----------------------------
+DROP TABLE IF EXISTS `t_member_confirm_info`;
+CREATE TABLE `t_member_confirm_info`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `memberid` int(11) NULL DEFAULT NULL COMMENT '会员 id',
+  `paynum` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '易付宝企业账号',
+  `cardnum` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '法人身份证号',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of t_member_confirm_info
+-- ----------------------------
+INSERT INTO `t_member_confirm_info` VALUES (1, 4, 'test', 'test');
+INSERT INTO `t_member_confirm_info` VALUES (2, 4, 'test', 'teset');
+
+
 SET FOREIGN_KEY_CHECKS = 1;
