@@ -43,17 +43,17 @@ public class ProjectServiceImpl implements ProjectService {
     @Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW, rollbackFor = Exception.class)
     @Override
     public void saveProject(ProjectVO projectVO, Integer memberId) {
-		
-		/*// 一、保存ProjectPO对象
+
+		// 一、保存ProjectPO对象
 		// 1.创建空的ProjectPO对象
 		ProjectPO projectPO = new ProjectPO();
-		
+
 		// 2.把projectVO中的属性复制到projectPO中
 		BeanUtils.copyProperties(projectVO, projectPO);
-		
+
 		// 修复bug：把memberId设置到projectPO中
 		projectPO.setMemberid(memberId);
-		
+
 		// 修复bug：生成创建时间存入
 		String createdate = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
 		projectPO.setCreatedate(createdate);
@@ -100,18 +100,18 @@ public class ProjectServiceImpl implements ProjectService {
 			ReturnPO returnPO = new ReturnPO();
 			
 			BeanUtils.copyProperties(returnVO, returnPO);
-			
+
 			returnPOList.add(returnPO);
 		}
-		
+
 		returnPOMapper.insertReturnPOBatch(returnPOList, projectId);
-		
+
 		// 七、保存项目确认信息
 		MemberConfirmInfoVO memberConfirmInfoVO = projectVO.getMemberConfirmInfoVO();
 		MemberConfirmInfoPO memberConfirmInfoPO = new MemberConfirmInfoPO();
 		BeanUtils.copyProperties(memberConfirmInfoVO, memberConfirmInfoPO);
 		memberConfirmInfoPO.setMemberid(memberId);
-		memberConfirmInfoPOMapper.insert(memberConfirmInfoPO);*/
-    }
+		memberConfirmInfoPOMapper.insert(memberConfirmInfoPO);
+	}
 
 }

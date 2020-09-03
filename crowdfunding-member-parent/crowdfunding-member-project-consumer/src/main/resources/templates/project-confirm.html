@@ -228,7 +228,7 @@
 
                                     <div class="row clearfix">
                                         <div class="col-md-6 column">
-                                            <form id="confirmFomr" th:action="@{/project/create/confirm}" method="post"
+                                            <form id="confirmForm" th:action="@{/project/create/confirm}" method="post"
                                                   role="form">
                                                 <div class="form-group">
                                                     <label for="exampleInputEmail1">易付宝企业账号：</label><input type="email"
@@ -262,7 +262,7 @@
                         <script type="text/javascript">
                             $(function () {
                                 $("#submitBtn").click(function () {
-                                    $("#confirmFomr").submit();
+                                    $("#confirmForm").submit();
                                 });
                             });
                         </script>

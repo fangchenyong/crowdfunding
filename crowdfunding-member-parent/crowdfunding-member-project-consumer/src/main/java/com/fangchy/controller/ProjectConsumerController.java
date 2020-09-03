@@ -52,22 +52,22 @@ public class ProjectConsumerController {
         Integer memberId = memberLoginVO.getId();
 
         // 5.调用远程方法保存projectVO对象
-        //ResultEntity<String> saveResultEntity = mySQLRemoteService.saveProjectVORemote(projectVO, memberId);
+        ResultEntity<String> saveResultEntity = mySQLRemoteService.saveProjectVORemote(projectVO, memberId);
 
         // 6.判断远程的保存操作是否成功
-		/*String result = saveResultEntity.getResult();
-		if(ResultEntity.FAILED.equals(result)) {
+        String result = saveResultEntity.getResult();
+        if (ResultEntity.FAILED.equals(result)) {
 
-			modelMap.addAttribute(CrowdConstant.ATTR_NAME_MESSAGE, saveResultEntity.getMessage());
+            modelMap.addAttribute(CrowdConstant.ATTR_NAME_MESSAGE, saveResultEntity.getMessage());
 
-			return "project-confirm";
-		}*/
+            return "project-confirm";
+        }
 
         // 7.将临时的ProjectVO对象从Session域移除
         session.removeAttribute(CrowdConstant.ATTR_NAME_TEMPLE_PROJECT);
 
         // 8.如果远程保存成功则跳转到最终完成页面
-        return "redirect:http://www.crowd.com/project/create/success";
+        return "redirect:http://localhost:800/project/create/success";
     }
 
     @ResponseBody
@@ -255,7 +255,7 @@ public class ProjectConsumerController {
         session.setAttribute(CrowdConstant.ATTR_NAME_TEMPLE_PROJECT, projectVO);
 
         // 2.以完整的访问路径前往下一个收集回报信息的页面
-        return "redirect:http://www.crowd.com/project/return/info/page";
+        return "redirect:http://localhost:800/project/return/info/page";
     }
 
 }
