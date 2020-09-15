@@ -1,7 +1,10 @@
 package com.fangchy;
 
 import com.fangchy.entity.po.MemberPO;
+import com.fangchy.entity.vo.PortalProjectVO;
+import com.fangchy.entity.vo.PortalTypeVO;
 import com.fangchy.mapper.MemberPOMapper;
+import com.fangchy.mapper.ProjectPOMapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -14,6 +17,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 
 /**
  * @ClassName: MybatisTest
@@ -31,12 +35,15 @@ public class MybatisTest {
     @Autowired
     private MemberPOMapper memberPOMapper;
 
-    private Logger logger =  LoggerFactory.getLogger(MybatisTest.class);
+    @Autowired
+    ProjectPOMapper projectPOMapper;
+
+    private Logger logger = LoggerFactory.getLogger(MybatisTest.class);
 
     @Test
     public void testConnection() throws SQLException {
         Connection connection = dataSource.getConnection();
-        logger.debug("创建连接："+connection.toString());
+        logger.debug("创建连接：" + connection.toString());
         //connection.close();
     }
 
@@ -52,5 +59,28 @@ public class MybatisTest {
         MemberPO memberPO = new MemberPO(null, "jack", encode, "杰克", "jack@qq.com", 1, 1, "杰克", "123123", 2);
 
         memberPOMapper.insert(memberPO);
+    }
+
+    @Test
+    public void testLoadTypeData() {
+
+        List<PortalTypeVO> typeVOList = projectPOMapper.selectPortalTypeVOList();
+
+        for (PortalTypeVO portalTypeVO : typeVOList) {
+            String name = portalTypeVO.getName();
+            String remark = portalTypeVO.getRemark();
+            logger.info("name=" + name + " remark=" + remark);
+
+            List<PortalProjectVO> projectVOList = portalTypeVO.getPortalProjectVOList();
+            for (PortalProjectVO portalProjectVO : projectVOList) {
+
+                if (portalProjectVO == null) {
+                    continue;
+                }
+
+                logger.info(portalProjectVO.toString());
+            }
+
+        }
     }
 }

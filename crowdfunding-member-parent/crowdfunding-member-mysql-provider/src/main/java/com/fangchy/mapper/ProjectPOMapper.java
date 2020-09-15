@@ -2,6 +2,8 @@ package com.fangchy.mapper;
 
 import com.fangchy.entity.po.ProjectPO;
 import com.fangchy.entity.po.ProjectPOExample;
+import com.fangchy.entity.vo.DetailProjectVO;
+import com.fangchy.entity.vo.PortalTypeVO;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -32,4 +34,8 @@ public interface ProjectPOMapper {
     void insertTypeRelationship(@Param("typeIdList") List<Integer> typeIdList, @Param("projectId") Integer projectId);
 
     void insertTagRelationship(@Param("tagIdList") List<Integer> tagIdList, @Param("projectId") Integer projectId);
+
+    List<PortalTypeVO> selectPortalTypeVOList();
+
+    DetailProjectVO selectDetailProjectVO(Integer projectId);
 }
