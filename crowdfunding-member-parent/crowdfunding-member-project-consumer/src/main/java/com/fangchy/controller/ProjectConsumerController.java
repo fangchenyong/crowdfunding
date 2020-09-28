@@ -9,15 +9,14 @@ import javax.servlet.http.HttpSession;
 import com.fangchy.api.MySQLRemoteService;
 import com.fangchy.config.OSSProperties;
 import com.fangchy.constant.CrowdConstant;
-import com.fangchy.entity.vo.MemberConfirmInfoVO;
-import com.fangchy.entity.vo.MemberLoginVO;
-import com.fangchy.entity.vo.ProjectVO;
-import com.fangchy.entity.vo.ReturnVO;
+import com.fangchy.entity.vo.*;
 import com.fangchy.util.CrowdUtil;
 import com.fangchy.util.ResultEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -31,6 +30,20 @@ public class ProjectConsumerController {
 
     @Autowired
     private MySQLRemoteService mySQLRemoteService;
+
+    @RequestMapping("/get/project/detail/{projectId}")
+    public String getProjectDetail(@PathVariable("projectId") Integer projectId, Model model) {
+
+        ResultEntity<DetailProjectVO> resultEntity = mySQLRemoteService.getDetailProjectVORemote(projectId);
+
+        if (ResultEntity.SUCCESS.equals(resultEntity.getResult())) {
+            DetailProjectVO detailProjectVO = resultEntity.getData();
+
+            model.addAttribute("detailProjectVO", detailProjectVO);
+        }
+
+        return "project-show-detail";
+    }
 
     @RequestMapping("/create/confirm")
     public String saveConfirm(ModelMap modelMap, HttpSession session, MemberConfirmInfoVO memberConfirmInfoVO) {

@@ -1,6 +1,8 @@
 package com.fangchy;
 
 import com.fangchy.entity.po.MemberPO;
+import com.fangchy.entity.vo.DetailProjectVO;
+import com.fangchy.entity.vo.DetailReturnVO;
 import com.fangchy.entity.vo.PortalProjectVO;
 import com.fangchy.entity.vo.PortalTypeVO;
 import com.fangchy.mapper.MemberPOMapper;
@@ -81,6 +83,44 @@ public class MybatisTest {
                 logger.info(portalProjectVO.toString());
             }
 
+        }
+    }
+
+    @Test
+    public void testLoadDetailProjectVO() {
+
+        Integer projectId = 6;
+
+        DetailProjectVO detailProjectVO = projectPOMapper.selectDetailProjectVO(projectId);
+
+        logger.info(detailProjectVO.getProjectId() + "");
+        logger.info(detailProjectVO.getProjectName());
+        logger.info(detailProjectVO.getProjectDesc());
+        logger.info(detailProjectVO.getFollowerCount() + "");
+        logger.info(detailProjectVO.getStatus() + "");
+        logger.info(detailProjectVO.getMoney() + "");
+        logger.info(detailProjectVO.getSupportMoney() + "");
+        logger.info(detailProjectVO.getPercentage() + "");
+        logger.info(detailProjectVO.getDeployDate() + "");
+        logger.info(detailProjectVO.getSupporterCount() + "");
+        logger.info(detailProjectVO.getHeaderPicturePath());
+
+        List<String> detailPicturePathList = detailProjectVO.getDetailPicturePathList();
+        for (String path : detailPicturePathList) {
+            logger.info("detail path=" + path);
+        }
+
+        List<DetailReturnVO> detailReturnVOList = detailProjectVO.getDetailReturnVOList();
+        for (DetailReturnVO detailReturnVO : detailReturnVOList) {
+            logger.info(detailReturnVO.getReturnId() + "");
+            logger.info(detailReturnVO.getSupportMoney() + "");
+            logger.info(detailReturnVO.getSignalPurchase() + "");
+            logger.info(detailReturnVO.getPurchase() + "");
+            logger.info(detailReturnVO.getSupproterCount() + "");
+            logger.info(detailReturnVO.getFreight() + "");
+            logger.info(detailReturnVO.getReturnDate() + "");
+            logger.info(detailReturnVO.getContent() + "");
+            logger.info(detailReturnVO.getFreight() + "");
         }
     }
 }

@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -122,7 +123,7 @@ public class ProjectServiceImpl implements ProjectService {
 		// 1.查询得到DetailProjectVO对象
 		DetailProjectVO detailProjectVO = projectPOMapper.selectDetailProjectVO(projectId);
 
-		/*// 2.根据status确定statusText
+		// 2.根据status确定statusText
 		Integer status = detailProjectVO.getStatus();
 
 		switch (status) {
@@ -174,7 +175,7 @@ public class ProjectServiceImpl implements ProjectService {
 
 		} catch (ParseException e) {
 			e.printStackTrace();
-		}*/
+		}
 
 		return detailProjectVO;
 	}
