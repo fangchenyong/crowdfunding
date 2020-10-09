@@ -359,4 +359,55 @@ INSERT INTO `t_member_confirm_info` VALUES (1, 4, 'test', 'test');
 INSERT INTO `t_member_confirm_info` VALUES (2, 4, 'test', 'teset');
 
 
+-- ----------------------------
+-- Table structure for t_order
+-- ----------------------------
+DROP TABLE IF EXISTS `t_order`;
+CREATE TABLE `t_order`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `order_num` char(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '订单号',
+  `pay_order_num` char(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '支付宝流水号',
+  `order_amount` double(10, 5) NULL DEFAULT NULL COMMENT '订单金额',
+  `invoice` int(11) NULL DEFAULT NULL COMMENT '是否开发票（0 不开，1 开）',
+  `invoice_title` char(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '发票抬头',
+  `order_remark` char(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '订单备注',
+  `address_id` char(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '收货地址 id',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for t_address
+-- ----------------------------
+DROP TABLE IF EXISTS `t_address`;
+CREATE TABLE `t_address`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `receive_name` char(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '收件人',
+  `phone_num` char(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '手机号',
+  `address` char(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '收货地址',
+  `member_id` int(11) NULL DEFAULT NULL COMMENT '用户 id',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of t_address
+-- ----------------------------
+INSERT INTO `t_address` VALUES (1, 'test', '18111145277', '四川', 4);
+INSERT INTO `t_address` VALUES (2, 'test', '18111145277', '四川', 4);
+
+-- ----------------------------
+-- Table structure for t_order_project
+-- ----------------------------
+DROP TABLE IF EXISTS `t_order_project`;
+CREATE TABLE `t_order_project`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `project_name` char(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '项目名称',
+  `launch_name` char(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '发起人',
+  `return_content` char(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '回报内容',
+  `return_count` int(11) NULL DEFAULT NULL COMMENT '回报数量',
+  `support_price` int(11) NULL DEFAULT NULL COMMENT '支持单价',
+  `freight` int(11) NULL DEFAULT NULL COMMENT '配送费用',
+  `order_id` int(11) NULL DEFAULT NULL COMMENT '订单表的主键',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
 SET FOREIGN_KEY_CHECKS = 1;

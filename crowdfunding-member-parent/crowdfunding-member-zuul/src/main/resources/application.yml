@@ -21,6 +21,9 @@ zuul:
     crowd-project:
       service-id: fangchy-project
       path: /project/**
+    crowd-order:
+      service-id: fangchy-order
+      path: /order/**
 ribbon:
   ReadTimeout: 10000
   ConnectTimeout: 10000
