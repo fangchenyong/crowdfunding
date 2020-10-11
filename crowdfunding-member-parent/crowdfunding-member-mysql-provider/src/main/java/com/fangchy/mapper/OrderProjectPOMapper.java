@@ -3,6 +3,7 @@ package com.fangchy.mapper;
 
 import com.fangchy.entity.po.OrderProjectPO;
 import com.fangchy.entity.po.OrderProjectPOExample;
+import com.fangchy.entity.vo.OrderProjectVO;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -29,4 +30,6 @@ public interface OrderProjectPOMapper {
     int updateByPrimaryKeySelective(OrderProjectPO record);
 
     int updateByPrimaryKey(OrderProjectPO record);
+
+    OrderProjectVO selectOrderProjectVO(Integer returnId);
 }

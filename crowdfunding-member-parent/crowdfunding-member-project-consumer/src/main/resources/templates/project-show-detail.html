@@ -222,9 +222,8 @@
                                         <p th:if="${return.freight==0}">配送费用：包邮</p>
                                         <p th:if="${return.freight>0}">配送费用：[[${return.freight}]]</p>
                                         <p>预计发放时间：项目筹款成功后的[[${return.returnDate}]]天内</p>
-                                        <button type="button" class="btn  btn-warning btn-lg"
-                                                onclick="window.location.href='pay-step-1.html'">支持
-                                        </button>
+                                        <a th:href="'http://localhost:800/order/confirm/return/info/'+${detailProjectVO.projectId}+'/'+${return.returnId}"
+                                           class="btn btn-warning btn-lg">支持</a>
                                         <br>
                                         <br>
                                         <p th:text="${return.content}">

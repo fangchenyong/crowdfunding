@@ -1,9 +1,7 @@
 package com.fangchy.api;
 
 import com.fangchy.entity.po.MemberPO;
-import com.fangchy.entity.vo.DetailProjectVO;
-import com.fangchy.entity.vo.PortalTypeVO;
-import com.fangchy.entity.vo.ProjectVO;
+import com.fangchy.entity.vo.*;
 import com.fangchy.util.ResultEntity;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -30,4 +28,13 @@ public interface MySQLRemoteService {
 
     @RequestMapping("/get/project/detail/remote/{projectId}")
     public ResultEntity<DetailProjectVO> getDetailProjectVORemote(@PathVariable("projectId") Integer projectId);
+
+    @RequestMapping("/get/order/project/vo/remote")
+    ResultEntity<OrderProjectVO> getOrderProjectVORemote(@RequestParam("projectId") Integer projectId, @RequestParam("returnId") Integer returnId);
+
+    @RequestMapping("/get/address/vo/remote")
+    ResultEntity<List<AddressVO>> getAddressVORemote(@RequestParam("memberId") Integer memberId);
+
+    @RequestMapping("/save/address/remote")
+    ResultEntity<String> saveAddressRemote(@RequestBody AddressVO addressVO);
 }

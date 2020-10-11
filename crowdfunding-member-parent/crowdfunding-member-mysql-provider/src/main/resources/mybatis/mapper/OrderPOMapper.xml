@@ -73,7 +73,7 @@
     id, order_num, pay_order_num, order_amount, invoice, invoice_title, order_remark, 
     address_id
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.fangchy.entity.OrderPOExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.fangchy.entity.po.OrderPOExample" >
     select
     <if test="distinct" >
       distinct
@@ -97,13 +97,13 @@
     delete from t_order
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.fangchy.entity.OrderPOExample" >
+  <delete id="deleteByExample" parameterType="com.fangchy.entity.po.OrderPOExample" >
     delete from t_order
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.fangchy.entity.OrderPO" >
+  <insert id="insert" parameterType="com.fangchy.entity.po.OrderPO" >
     insert into t_order (id, order_num, pay_order_num, 
       order_amount, invoice, invoice_title, 
       order_remark, address_id)
@@ -111,7 +111,7 @@
       #{orderAmount,jdbcType=DOUBLE}, #{invoice,jdbcType=INTEGER}, #{invoiceTitle,jdbcType=CHAR}, 
       #{orderRemark,jdbcType=CHAR}, #{addressId,jdbcType=CHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.fangchy.entity.OrderPO" >
+  <insert id="insertSelective" parameterType="com.fangchy.entity.po.OrderPO" >
     insert into t_order
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -166,7 +166,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.fangchy.entity.OrderPOExample" resultType="java.lang.Integer" >
+  <select id="countByExample" parameterType="com.fangchy.entity.po.OrderPOExample" resultType="java.lang.Integer" >
     select count(*) from t_order
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
@@ -218,7 +218,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.fangchy.entity.OrderPO" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.fangchy.entity.po.OrderPO" >
     update t_order
     <set >
       <if test="orderNum != null" >
@@ -245,7 +245,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.fangchy.entity.OrderPO" >
+  <update id="updateByPrimaryKey" parameterType="com.fangchy.entity.po.OrderPO" >
     update t_order
     set order_num = #{orderNum,jdbcType=CHAR},
       pay_order_num = #{payOrderNum,jdbcType=CHAR},
