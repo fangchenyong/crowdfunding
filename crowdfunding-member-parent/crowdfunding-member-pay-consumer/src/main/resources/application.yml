@@ -1,0 +1,28 @@
+server:
+  port: 7000
+spring:
+  application:
+    name: fangchy-pay
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+  redis:
+    host: 127.0.0.1
+  session:
+    store-type: redis
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:1000/eureka
+
+ali:
+  pay:
+    alipay-public-key: alipay-public-key
+    app-id: app-id
+    charset: utf-8
+    gateway-url: https://openapi.alipaydev.com/gateway.do
+    merchant-private-key: merchant-private-key
+    notify-url: 外网/pay/notify
+    return-url: http://localhost:800/pay/return
+    sign-type: RSA2

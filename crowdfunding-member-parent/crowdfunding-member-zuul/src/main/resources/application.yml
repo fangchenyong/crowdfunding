@@ -24,6 +24,9 @@ zuul:
     crowd-order:
       service-id: fangchy-order
       path: /order/**
+    crowd-pay:
+      service-id: fangchy-pay
+      path: /pay/**
 ribbon:
   ReadTimeout: 10000
   ConnectTimeout: 10000
